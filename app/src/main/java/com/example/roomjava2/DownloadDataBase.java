@@ -1,18 +1,15 @@
 package com.example.roomjava2;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -28,7 +25,7 @@ public class DownloadDataBase extends AsyncTask<String, Integer, Integer> {
     private ProgressDialog  progressDialog;
     private Context context;
     private String NAME;
-    private String PATH;
+    private String path;
     private UnzipListener unzipListener;
 
     public DownloadDataBase(Context context, String name,UnzipListener unzipListener) {
@@ -56,7 +53,7 @@ public class DownloadDataBase extends AsyncTask<String, Integer, Integer> {
 
         String URL_ADDRESS=params[0];
         String PATHNAME=params[1]; // path for download and unzip
-        PATH=PATHNAME;
+        path =PATHNAME;
         //check folder exist
         File file = new File(PATHNAME);
         if (!file.exists()) {
@@ -134,7 +131,7 @@ public class DownloadDataBase extends AsyncTask<String, Integer, Integer> {
         //8 -delete zip file
 
         try {
-            File file = new File(PATH+NAME);
+            File file = new File(path +NAME);
             file.delete();
         }catch (Exception e){
             Log.e(MainActivity.TAG,e.getMessage());
